@@ -27,7 +27,7 @@ def build(bld):
     sources += bld.path.ant_glob('src/Embedded.cpp')
 
     include_paths = [os.path.join(path, 'src', 'main', 'c'), './src']
-    export_includes = os.path.join(path, 'src', 'main', 'c', 'seasocks')
+    export_includes = os.path.join(path, 'src', 'main', 'c')
 
     bld.stlib(
         features='cxx',
