@@ -27,7 +27,7 @@ def build(bld):
     sources += bld.path.ant_glob('src/Embedded.cpp')
 
     include_paths = [os.path.join(path, 'src', 'main', 'c'), './src']
-
+    export_includes = os.path.join(path, 'src', 'main', 'c', 'seasocks')
 
     bld.stlib(
         features='cxx',
@@ -35,17 +35,15 @@ def build(bld):
         includes=include_paths,
         target='seasocks',
         use=use_flags,
-        export_includes=include_paths
+        export_includes=[export_includes]
     )
 
     if bld.is_toplevel():
         # Only build tests when executed from the top-level wscript,
         # i.e. not when included as a dependency
 
-        # Export thirdparty includes
-        out = bld(name='thirdparty',
-            includes='./thirdparty',
-            export_includes='./thirdparty')
+        # Export thirdparty includes for unit tests
+        bld(name='thirdparty', export_includes='./thirdparty')
 
         bld.program(
             features='cxx test',
