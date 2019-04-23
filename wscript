@@ -21,13 +21,12 @@ def build(bld):
         use_flags += ['PTHREAD']
 
     # Path to the seasocks repo
-    path = bld.dependency_path("seasocks-source")
-    seasocks_path = bld.root.find_dir(path)
+    seasocks_path = bld.dependency_node("seasocks-source")
     sources = seasocks_path.ant_glob('src/main/c/**/*.cpp', excl=['**/ZlibContext.cpp'])
     sources += bld.path.ant_glob('src/Embedded.cpp')
 
-    include_paths = [os.path.join(path, 'src', 'main', 'c'), './src']
-    export_includes = os.path.join(path, 'src', 'main', 'c')
+    include_paths = [seasocks_path.find_dir('src/main/c'), bld.path.find_dir('./src')]
+    export_includes = seasocks_path.find_dir('src/main/c')
 
     bld.stlib(
         features='cxx',
