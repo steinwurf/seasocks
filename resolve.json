@@ -1,0 +1,20 @@
+[
+    {
+        "name": "waf-tools",
+        "resolver": "git",
+        "method": "semver",
+        "major": 4,
+        "sources": [
+            "github.com/steinwurf/waf-tools.git"
+        ]
+    },
+    {
+        "name": "seasocks-source",
+        "resolver": "git",
+        "method": "checkout",
+        "checkout": "33b4b3af076f02a50e5033236191be0aeb02f82c",
+        "sources": [
+            "github.com:steinwurf/seasocks-source.git"
+        ]
+    }
+]
